@@ -75,7 +75,7 @@ const totalPrice = computed(() => {
                 <td class="py-3 px-4 flex justify-center items-center">
                   <img :src="item.image" alt="Product" class="w-20 h-20 object-cover rounded" />
                 </td>
-                <td class="py-3 px-4 text-center"><router-link :to="`/productس/${item.id}`">{{ item.title }}</router-link></td>
+                <td class="py-3 px-4 text-center"><router-link :to="`/product/${item.id}`">{{ item.title }}</router-link></td>
                 <td class="py-3 px-4 text-center">{{ item.price.toLocaleString() }} تومان</td>
                 <td class="py-3 px-4 text-center">{{ item.stock }}</td>
                 <td class="py-3 px-4 text-center">

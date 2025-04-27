@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@plugin "daisyui";
+@theme {
+  --color-alireza:#004F44;
+  --color-todobg:#f5cd79;
+  --font-naqi:"Abril Fatface", "serif";
+
+}

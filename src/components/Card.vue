@@ -45,6 +45,9 @@ const showProductDetail = () => {
       <h3 class="card-title text-right font-semibold" dir="rtl">
         {{ title }}
       </h3>
+      <h3 class="card-title text-right font-semibold" dir="rtl">
+        {{ price }}تومان
+      </h3>
       <div class="card-actions justify-end mt-4">
         <button 
           class="btn btn-primary px-6 py-2"

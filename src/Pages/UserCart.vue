@@ -7,10 +7,6 @@ import { ref, computed, onMounted } from 'vue';
 const UserCart = useCartStore();
 const cartItems = ref([]);
 
-
-
-
-
 onMounted(() => {
   const savedCart = JSON.parse(localStorage.getItem('cartItems'));
   if (savedCart) {

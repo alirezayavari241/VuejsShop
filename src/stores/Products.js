@@ -169,21 +169,6 @@ export const useProductsStore = defineStore('Products', {
 
               },
           ],
-          searchQuery: '',
-          getters: {
-            filteredProducts: (state) => {
-                if (!state.searchQuery) return state.Products;
-                return state.Products.filter(product =>
-                    product.title.toLowerCase().includes(state.searchQuery.toLowerCase()) || 
-                    product.author.toLowerCase().includes(state.searchQuery.toLowerCase())
-                );
-            }
-        },
-        actions: {
-            setSearchQuery(query) {
-                this.searchQuery = query;
-            }
-        }
     }
     }
     

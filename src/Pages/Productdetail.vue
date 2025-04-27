@@ -40,44 +40,61 @@ function handleAddToCart() {
 </script>
 
 <template>
-  <div class="w-screen">
+  <div class="w-screen bg-gray-50">
     <Navbar />
-  </div>
-  <div class="flex flex-col items-center p-4 sm:p-8 mt-16">
-    <div>
-      <img :src="product?.image"
-        class="w-72 h-72 object-cover hover:opacity-90 cursor-pointer transition-opacity shadow-2xl" :alt="product?.title || 'محصول'">
-    </div>
-    <div class="max-w-2xl w-full bg-white shadow-xl rounded-2xl p-6 relative mt-8 ">
-      <div v-if="product?.discount > 0" class="absolute top-4 left-4 bg-red-500 text-white text-sm font-bold px-3 py-1 rounded-full">
-        {{ product.discount }}٪ تخفیف
+
+    <div class=" mx-auto px-4 py-10 flex flex-col md:flex-row items-center md:items-start gap-10 mt-16">
+
+      <div class="w-full md:w-1/2 flex justify-center">
+        <div class="relative group">
+          <img 
+            :src="product?.image" 
+            class="w-72 h-72 md:w-96 md:h-96 object-cover rounded-2xl shadow-xl transition-all duration-300 group-hover:scale-105 group-hover:opacity-90"
+            :alt="product?.title || 'محصول'" 
+          />
+          <div 
+            v-if="product?.discount > 0" 
+            class="absolute top-4 left-4 bg-red-500 text-white text-xs md:text-sm font-bold px-3 py-1 rounded-full">
+            {{ product.discount }}٪ تخفیف
+          </div>
+        </div>
       </div>
-      <span class="flex flex-col border-black border-1 w-fit p-3 rounded-xl ">
-        <h1 class="text-2xl font-bold mb-4 text-center">{{ product?.title }}</h1>
-        <p class="text-gray-700 mb-2 text-center"><strong>نویسنده:</strong> {{ product?.author }}</p>
-        <div class="flex items-center justify-center gap-4 mb-4">
+
+      <div class="w-full md:w-1/2 bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-6">
+        <div class="text-center">
+          <h1 class="text-2xl md:text-3xl font-bold mb-2">{{ product?.title }}</h1>
+          <p class="text-gray-700 text-sm md:text-base"><strong>نویسنده:</strong> {{ product?.author }}</p>
+        </div>
+
+        <div class="flex flex-col items-center gap-2">
           <p v-if="product?.discount > 0" class="text-gray-400 line-through text-lg">
             {{ formattedOriginalPrice }}
           </p>
-          <p class="text-green-600 text-2xl font-bold">
+          <p class="text-green-600 text-2xl md:text-3xl font-bold">
             {{ formattedDiscountedPrice }}
           </p>
+          <p class="text-gray-700 text-sm"><strong>موجودی:</strong> {{ product?.stock }} عدد</p>
         </div>
-        <p class="text-gray-700 mb-2 text-center"><strong>موجودی:</strong> {{ product?.stock }} عدد</p>
-      </span>
-      <p class="text-gray-600 text-right text-lg mt-3">خلاصه داستان: {{ product?.description }}</p>
-  
-      <div class="mt-8 flex justify-center">
-        <button 
-          class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-lg transition-all duration-300 shadow-md hover:scale-105" 
-          @click="handleAddToCart"
-        >
-          {{ isInCart ? 'کالا در سبد موجود است' : 'اضافه به سبد خرید' }}
-        </button>
+
+        <div class="bg-gray-100 p-4 rounded-xl text-right text-gray-700 leading-7 text-sm md:text-base">
+          خلاصه داستان: {{ product?.description }}
+        </div>
+
+        <div class="flex justify-center mt-4">
+          <button 
+            class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-8 rounded-lg transition-all duration-300 shadow-md hover:scale-105"
+            @click="handleAddToCart"
+          >
+            {{ isInCart ? 'کالا در سبد موجود است' : 'اضافه به سبد خرید' }}
+          </button>
+        </div>
       </div>
+
     </div>
+
   </div>
   <FooterComponent />
+
 </template>
 
 <style scoped>

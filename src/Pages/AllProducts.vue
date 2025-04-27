@@ -9,23 +9,20 @@ import { useRoute, useRouter } from 'vue-router';
 const productsStore = useProductsStore();
 const products = productsStore.Products;
 
-const selectedFilter = ref('all'); // فیلتر پیش‌فرض
+const selectedFilter = ref('all'); 
 const route = useRoute();
 const router = useRouter();
 
-// وقتی صفحه لود شد، اگر فیلتر توی URL هست بخونیم
 onMounted(() => {
   if (route.query.filter) {
     selectedFilter.value = route.query.filter;
   }
 });
 
-// وقتی فیلتر تغییر کرد، URL رو هم تغییر بده
 watch(selectedFilter, (newFilter) => {
   router.push({ query: { ...route.query, filter: newFilter } });
 });
 
-// محصولات فیلتر شده
 const filteredProducts = computed(() => {
   let sorted = [...products];
 
@@ -47,7 +44,6 @@ const filteredProducts = computed(() => {
       <p class="text-2xl">لیست محصولات</p>
     </div>
 
-    <!-- فیلترها -->
     <div class="flex gap-2 justify-center mt-6 flex-wrap">
       <button @click="selectedFilter = 'all'" class="border rounded-full py-2 px-4 text-gray-700 hover:bg-gray-100 transition" :class="selectedFilter === 'all' ? 'bg-gray-200' : ''">
         همه محصولات
@@ -63,8 +59,7 @@ const filteredProducts = computed(() => {
       </button>
     </div>
 
-    <!-- محصولات -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 mx-auto w-10/12 p-3 justify-center">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6 mx-auto w-10/12 p-3 justify-center items-center">
       <div v-for="product in filteredProducts" :key="product.id">
         <Card 
           :title="product.title"

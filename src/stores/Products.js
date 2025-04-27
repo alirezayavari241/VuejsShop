@@ -142,6 +142,8 @@ export const useProductsStore = defineStore('Products', {
                 description: "ترجمه‌ای موفق از اثری روانشناسانه و انگیزشی.",
                 discount: 20,
                 stock: 6,
+                image:'https://static.scientificamerican.com/sciam/cache/file/1DDFE633-2B85-468D-B28D05ADAE7D1AD8_source.jpg'
+
 
               },
               {

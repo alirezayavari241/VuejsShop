@@ -156,21 +156,14 @@ onBeforeUnmount(() => {
           <span v-if="uniqueItemsCount > 0" class="badge badge-xs badge-primary indicator-item mr-5">{{ uniqueItemsCount }}</span>
         </div>
       </router-link>
-          <div class="relative ml-2 mr-5">
-            <select
-              v-model="locale"
-              class="bg-white/10 text-white border border-white/20 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
-            >
-              <option
-                v-for="localeOption in availableLocales"
-                :key="`locale-${localeOption}`"
-                :value="localeOption"
-                class="text-black"
-              >
-                {{ localeOption }}
-              </option>
-            </select>
-           </div>
+      <div class="relative w-fit mr-5">
+  <button
+    @click="locale = locale === 'fa-IR' ? 'en-US' : 'fa-IR'"
+    class="bg-white/10 text-white border border-white/20 rounded-lg px-4 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+  >
+    {{ locale.toUpperCase() }}
+  </button>
+</div>
       </div>
    </div>
 </template>

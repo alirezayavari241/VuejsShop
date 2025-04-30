@@ -6,7 +6,10 @@ export const useProductsStore = defineStore('Products', {
         Products: [
             {
                 id: 1,
-                title: "سمفونی مردگان",
+                title:{
+                  "fa-IR":"سمفونی مردگان",
+                  "en-US":"English Title1"
+                } ,
                 author: "عباس معروفی",
                 price: 180000,
                 description: "روایتی تلخ از سرنوشت یک خانواده در شهر اردبیل.",
@@ -16,7 +19,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 2,
-                title: "چراغ‌ها را من خاموش می‌کنم",
+                title:{
+                  "fa-IR":"چراغ‌ها را من خاموش می‌کنم",
+                  "en-US":"English Title2"
+                },
                 author: "زویا پیرزاد",
                 price: 150000,
                 description: "نگاهی لطیف به زندگی یک زن خانه‌دار در دهه چهل.",
@@ -26,7 +32,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 3,
-                title: "بوف کور",
+                title:{
+                  "fa-IR":"بوف کور",
+                  "en-US":"English Title3"
+                },
                 author: "صادق هدایت",
                 price: 130000,
                 description: "رمانی سوررئال با فضایی تاریک و فلسفی.",
@@ -36,7 +45,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 4,
-                title: "چهل نامه کوتاه به همسرم",
+                title:{
+                  "fa-IR":"جهل نامه کوتاه به همسرم",
+                  "en-US":"English Title4"
+                },                
                 author: "نادر ابراهیمی",
                 price: 110000,
                 description: "نامه‌هایی عاشقانه و عمیق از نادر به همسرش.",
@@ -47,7 +59,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 5,
-                title: "من او",
+                title:{
+                  "fa-IR":"من و او",
+                  "en-US":"English Title5"
+                },                
                 author: "رضا امیرخانی",
                 price: 190000,
                 description: "داستانی عاشقانه و معنوی با روایتی خاص.",
@@ -58,7 +73,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 6,
-                title: "کلیدر",
+                title:{
+                  "fa-IR":"کلیدر",
+                  "en-US":"English Title6"
+                },                
                 author: "محمود دولت‌آبادی",
                 price: 350000,
                 description: "روایتی گسترده از زندگی روستایی در خراسان.",
@@ -70,7 +88,10 @@ export const useProductsStore = defineStore('Products', {
               
               {
                 id: 7,
-                title: "زوال کلنل",
+                title:{
+                  "fa-IR":"زوال کلنل",
+                  "en-US":"English Title7"
+                },                
                 author: "محمود دولت‌آبادی",
                 price: 200000,
                 description: "روایتی سیاسی و تاریک از ایران بعد از انقلاب.",
@@ -81,7 +102,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 8,
-                title: "یک عاشقانه‌ی آرام",
+                title:{
+                  "fa-IR":"یک عاشقانه آرام",
+                  "en-US":"English Title8"
+                },                
                 author: "نادر ابراهیمی",
                 price: 125000,
                 description: "کتابی لطیف و تأمل‌برانگیز در مورد عشق و زندگی.",
@@ -92,7 +116,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 9,
-                title: "قهوه‌ سرد آقای نویسنده",
+                title:{
+                  "fa-IR":"قهوه سرد آقای نویسنده",
+                  "en-US":"English Title9"
+                },               
                 author: "روزبه معین",
                 price: 140000,
                 description: "روایتی معاصر از دل‌تنگی‌ها و دغدغه‌های نویسنده‌ای جوان.",
@@ -103,7 +130,11 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 10,
-                title: "بی‌کتابی",
+                title:{
+                  "fa-IR":"بی کتابی",
+                  "en-US":"English Title10"
+                },
+                               
                 author: "محمدرضا شرفی خبوشان",
                 price: 170000,
                 description: "داستانی تاریخی از دوران مشروطه با چاشنی کتاب‌دوستی.",
@@ -114,8 +145,11 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 11,
-                title: "ره‌ش",
-                author: "رضا امیرخانی",
+                title:{
+                  "fa-IR":"ماجراهای ایران",
+                  "en-US":"English Title11"
+                },               
+                 author: "رضا امیرخانی",
                 price: 210000,
                 description: "بررسی سبک زندگی و دغدغه‌های اجتماعی نسل امروز.",
                 discount: 15,
@@ -125,8 +159,11 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 12,
-                title: "بار دیگر شهری که دوست می‌داشتم",
-                author: "نادر ابراهیمی",
+                title:{
+                  "fa-IR":"بار دیگر دوستت دارم",
+                  "en-US":"English Title12"
+                },               
+                 author: "نادر ابراهیمی",
                 price: 135000,
                 description: "روایتی عاشقانه با نثری شاعرانه و ماندگار.",
                 discount: 28,
@@ -136,7 +173,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 13,
-                title: "انسان در جستجوی معنا",
+                title:{
+                  "fa-IR":"انسان در جستجوی معنا",
+                  "en-US":"English Title13"
+                },  
                 author: "ویکتور فرانکل",
                 price: 165000,
                 description: "ترجمه‌ای موفق از اثری روانشناسانه و انگیزشی.",
@@ -148,7 +188,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 14,
-                title: "تکه‌هایی از یک کل منسجم",
+                title:{
+                  "fa-IR":"تکه هایی از یک کل منسجم",
+                  "en-US":"English Title14"
+                },                
                 author: "پریسا جهانگیری",
                 price: 145000,
                 description: "سفر درونی به سمت خودشناسی و خودسازی.",
@@ -159,7 +202,10 @@ export const useProductsStore = defineStore('Products', {
               },
               {
                 id: 15,
-                title: "جزء از کل",
+                title:{
+                  "fa-IR":"جزء از کل",
+                  "en-US":"English Title15"
+                },                
                 author: "استیو تولتز (ترجمه: پیمان خاکسار)",
                 price: 250000,
                 description: "رمانی خاص و فلسفی در قالب داستانی جذاب و طنزآلود.",

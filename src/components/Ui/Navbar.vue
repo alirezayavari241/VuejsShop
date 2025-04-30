@@ -1,9 +1,15 @@
 <script setup>
-import { ref, nextTick, onMounted, onBeforeUnmount,computed } from 'vue';
+import { ref, nextTick, onMounted, onBeforeUnmount,computed ,watch } from 'vue';
 import { useDeviceStore } from '../../stores/Devices';
 import { useCartStore } from '../../stores/Cartstore';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
 
+const { t, availableLocales,locale } = useI18n({ useScope: 'global' })
+
+watch(locale, (newLocale) => {
+  localStorage.setItem('locale', newLocale)
+})
 const cartStore = useCartStore();
 const deviceStore = useDeviceStore();
 const router = useRouter();
@@ -38,12 +44,6 @@ const closeModal = () => {
   deviceStore.searchQuery = '';
 };
 
-const performSearch = () => {
-  if (deviceStore.searchQuery.trim()) {
-    router.push({ name: 'SearchPage', query: { q: deviceStore.searchQuery.trim() } });
-    closeModal();
-  }
-};
 
 onMounted(() => {
   checkScreenSize();
@@ -71,7 +71,7 @@ onBeforeUnmount(() => {
     </div>
 
     <div class="navbar-center">
-      <router-link to="/" ><p class="text-white text-xl hover:cursor-pointer"> FelanShop </p></router-link>
+      <router-link to="/" ><p class="text-white text-xl hover:cursor-pointer"> {{t("nav.Name")}} </p></router-link>
     </div>
 
     <div class="navbar-end xl:space-x-6 sm:space-x-2">
@@ -93,7 +93,7 @@ onBeforeUnmount(() => {
               v-model="deviceStore.searchQuery"
               @keyup.enter="performSearch"
               type="search"
-              placeholder="جستجو"
+              :placeholder="(t('nav.Search'))"
               class="bg-transparent border-none focus:outline-none text-white placeholder-white/70 w-full ml-2"
             />
           </label>
@@ -137,15 +137,15 @@ onBeforeUnmount(() => {
                 v-model="deviceStore.searchQuery"
                 @keyup.enter="performSearch"
                 type="search"
-                placeholder="جستجو"
+                :placeholder="(t('nav.Search'))" 
                 class="bg-transparent border-none focus:outline-none text-gray-800 placeholder-gray-500 w-full ml-2"
                 autofocus
               />
             </div>
             <div class="flex justify-end">
-              <button @click="closeModal" class="btn btn-sm btn-ghost text-gray-700">لغو</button>
-              <button @click="performSearch" :disabled="!deviceStore.searchQuery.trim()"
-                class="btn btn-sm btn-primary ml-2">جستجو</button>
+              <button @click="closeModal" class="btn btn-sm btn-ghost text-gray-700">{{ t("nav.Cancel") }}</button>
+              <button  :disabled="!deviceStore.searchQuery.trim()"
+                class="btn btn-sm btn-primary ml-2">{{t("nav.Search")}}</button>
             </div>
           </div>
         </div>
@@ -156,8 +156,23 @@ onBeforeUnmount(() => {
           <span v-if="uniqueItemsCount > 0" class="badge badge-xs badge-primary indicator-item mr-5">{{ uniqueItemsCount }}</span>
         </div>
       </router-link>
-    </div>
-  </div>
+          <div class="relative ml-2 mr-5">
+            <select
+              v-model="locale"
+              class="bg-white/10 text-white border border-white/20 rounded-lg px-3 py-1 text-sm focus:outline-none focus:ring-2 focus:ring-white/30 transition-all"
+            >
+              <option
+                v-for="localeOption in availableLocales"
+                :key="`locale-${localeOption}`"
+                :value="localeOption"
+                class="text-black"
+              >
+                {{ localeOption }}
+              </option>
+            </select>
+           </div>
+      </div>
+   </div>
 </template>
 
 <style scoped>
@@ -168,4 +183,13 @@ onBeforeUnmount(() => {
 .btn-ghost:hover {
   transform: scale(1.1);
 }
+select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='18' viewBox='0 0 24 24' width='18' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 0.5rem center;
+  background-size: 1rem;
+  padding-right: 2rem;
+}
+
 </style>

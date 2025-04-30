@@ -5,6 +5,11 @@ import FooterComponent from '../components/Ui/FooterComponent.vue';
 import Card from '../components/Card.vue';
 import { computed, ref, watch, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+
+
+const {t} = useI18n({ useScope: 'global' })
 
 const productsStore = useProductsStore();
 const products = productsStore.Products;
@@ -39,23 +44,23 @@ const filteredProducts = computed(() => {
 
 <template>
   <Navbar />
-  <div class="w-screen mt-8">
+  <div class="w-screen mt-24">
     <div class="text-center mx-auto pb-2 w-8/12 justify-center border-b-black border-b-2">
-      <p class="text-2xl">لیست محصولات</p>
+      <p class="text-2xl">{{ t('AllProducts.Title') }}</p>
     </div>
 
     <div class="flex gap-2 justify-center mt-6 flex-wrap">
-      <button @click="selectedFilter = 'all'" class="border rounded-full py-2 px-4 text-gray-700 hover:bg-gray-100 transition" :class="selectedFilter === 'all' ? 'bg-gray-200' : ''">
-        همه محصولات
+      <button @click="selectedFilter = 'all'" class="border rounded-full py-2 px-4 border-black btnbg hover:bg-green-800 transition hover:text-white" :class="selectedFilter === 'all' ? 'bg-green-900 text-white' : ''">
+        {{ t("AllProducts.All") }}
       </button>
-      <button @click="selectedFilter = 'cheapest'" class="border rounded-full py-2 px-4 text-gray-700 hover:bg-gray-100 transition" :class="selectedFilter === 'cheapest' ? 'bg-gray-200' : ''">
-        ارزان‌ترین
+      <button @click="selectedFilter = 'cheapest'" class="border rounded-full border-black py-2 px-4 text-black btnbg hover:bg-green-800 hover:text-white transition" :class="selectedFilter === 'cheapest' ? 'bg-green-900 text-white' : ''">
+      {{ t("AllProducts.Low") }}
       </button>
-      <button @click="selectedFilter = 'expensive'" class="border rounded-full py-2 px-4 text-gray-700 hover:bg-gray-100 transition" :class="selectedFilter === 'expensive' ? 'bg-gray-200' : ''">
-        گران‌ترین
+      <button @click="selectedFilter = 'expensive'" class="border rounded-full py-2 px-4 border-black btnbg hover:bg-green-800 transition hover:text-white" :class="selectedFilter === 'expensive' ? 'bg-green-900 text-white' : ''">
+        {{ t("AllProducts.High") }}
       </button>
-      <button @click="selectedFilter = 'highest-discount'" class="border rounded-full py-2 px-4 text-gray-700 hover:bg-gray-100 transition" :class="selectedFilter === 'highest-discount' ? 'bg-gray-200' : ''">
-        بیشترین تخفیف
+      <button @click="selectedFilter = 'highest-discount'" class="border rounded-full py-2 px-4 border-black btnbg hover:bg-green-800 transition hover:text-white" :class="selectedFilter === 'highest-discount' ? 'bg-green-900 text-white' : ''">
+        {{ t("AllProducts.Md") }}
       </button>
     </div>
 

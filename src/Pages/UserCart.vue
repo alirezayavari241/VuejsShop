@@ -3,7 +3,9 @@ import Navbar from '../components/Ui/Navbar.vue';
 import FooterComponent from '../components/Ui/FooterComponent.vue';
 import { useCartStore } from '../stores/Cartstore';
 import { ref, computed, onMounted } from 'vue';
+import { useI18n } from 'vue-i18n';
 
+const {t , locale} = useI18n({ useScope: 'global' })
 const UserCart = useCartStore();
 const cartItems = ref([]);
 
@@ -16,21 +18,20 @@ onMounted(() => {
 
 const updateQuantity = (item, newQuantity) => {
   if (newQuantity < 1) return;
-  if (newQuantity > item.stock) {
-    alert(`فقط ${item.stock} عدد موجوده!`);
-    return;
-  }
   item.quantity = newQuantity;
   saveCart();
 };
 
 const removeItem = (itemId) => {
-  cartItems.value = cartItems.value.filter(item => item.id !== itemId);
-  saveCart();
+  if (confirm(t("Cart.Deletemsg"))) {
+    cartItems.value = cartItems.value.filter(item => item.id !== itemId);
+    saveCart();
+}
+
 };
 
 const clearCart = () => {
-  if (confirm('آیا مطمئنی میخوای سبد خرید رو خالی کنی؟')) {
+  if (confirm(t("Cart.Clearmsg"))) {
     cartItems.value = [];
     saveCart();
   }
@@ -51,30 +52,28 @@ const totalPrice = computed(() => {
     <Navbar />
 
     <main class="flex-1 w-screen p-4">
-      <h1 class="text-3xl font-bold mb-8 text-center">🛒 سبد خرید شما</h1>
+      <h1 class="text-3xl font-bold mb-8 text-center mt-16">🛒{{ t("Cart.Title") }}</h1>
 
       <div v-if="cartItems.length" class="w-full overflow-x-auto">
         <div class="max-w-6xl mx-auto">
           <table class="min-w-full bg-white border rounded-lg overflow-hidden">
             <thead class="bg-gray-100">
               <tr class="text-gray-700 text-sm md:text-base">
-                <th class="py-3 px-4 text-center">تصویر</th>
-                <th class="py-3 px-4 text-center">نام محصول</th>
-                <th class="py-3 px-4 text-center">قیمت</th>
-                <th class="py-3 px-4 text-center">موجودی</th>
-                <th class="py-3 px-4 text-center">تعداد</th>
-                <th class="py-3 px-4 text-center">حذف</th>
+                <th class="py-3 px-4 text-center">{{ t("Cart.Tabletitle") }}</th>
+                <th class="py-3 px-4 text-center">{{ t("Cart.Tableprice") }}</th>
+                <th class="py-3 px-4 text-center">{{ t("Cart.Tablecount") }}</th>
+                <th class="py-3 px-4 text-center">{{ t("Cart.Tabledelete") }}</th>
+                <th class="py-3 px-4 text-center">{{ t("Cart.Tableimg") }}</th>
               </tr>
             </thead>
             <tbody>
               <tr v-for="item in cartItems" :key="item.id" class="border-t hover:bg-gray-50 transition">
-                <td class="py-3 px-4 flex justify-center items-center">
+                <td class="py-3 px-4 flex justify-center items-center" :data-label="t('Cart.Tableimg')">
                   <img :src="item.image" alt="Product" class="w-20 h-20 object-cover rounded" />
                 </td>
-                <td class="py-3 px-4 text-center"><router-link :to="`/product/${item.id}`">{{ item.title }}</router-link></td>
-                <td class="py-3 px-4 text-center">{{ item.price.toLocaleString() }} تومان</td>
-                <td class="py-3 px-4 text-center">{{ item.stock }}</td>
-                <td class="py-3 px-4 text-center">
+                <td class="py-3 px-4 text-center" :data-label="t('Cart.Tabletitle')"><router-link :to="`/product/${item.id}`">{{ item.title[locale] }}</router-link></td>
+                <td class="py-3 px-4 text-center" :data-label="t('Cart.Tableprice')">{{ item.price.toLocaleString() }}{{t('Cart.Currency')}}</td>
+                <td class="py-3 px-4 text-center" :data-label="t('Cart.Tablecount')">
                   <input
                     type="number"
                     class="w-20 p-1 rounded shadow-sm text-center border"
@@ -85,12 +84,11 @@ const totalPrice = computed(() => {
                     @change="updateQuantity(item, item.quantity)"
                   />
                 </td>
-                <td class="py-3 px-4 text-center">
+                <td class="py-3 px-4 text-center" :data-label="t('Cart.Tabledelete')">
                   <button
                     @click="removeItem(item.id)"
                     class="bg-red-500 hover:bg-red-600 text-white text-sm py-1 px-3 rounded"
-                  >
-                    حذف
+                  >{{ t("Cart.Deletebtn") }}
                   </button>
                 </td>
               </tr>
@@ -98,21 +96,21 @@ const totalPrice = computed(() => {
           </table>
 
           <div class="flex flex-col md:flex-row justify-between items-center mt-8 bg-gray-50 p-4 rounded-lg shadow">
-            <div class="text-lg font-semibold mb-4 md:mb-0">
-              مبلغ کل: <span class="text-green-600">{{ totalPrice.toLocaleString() }} تومان</span>
+            <div class="text-lg font-semibold mb-4 md:mb-0 text-center">
+              {{ t('Cart.Total') }}<br/><span class="text-green-600 flex justify-center">{{ totalPrice.toLocaleString() }}{{t('Cart.Currency')}}</span>
             </div>
             <button
               @click="clearCart"
               class="bg-red-500 hover:bg-red-600 text-white py-2 px-6 rounded text-sm md:text-base"
-            >
-              خالی کردن سبد
+              >{{ t("Cart.Clearbtn") }}
+
             </button>
           </div>
         </div>
       </div>
 
       <div v-else class="text-center text-gray-500 mt-20 text-lg">
-        سبد خرید شما خالی است 🛒
+        {{t("Cart.Empty")}}🛒
       </div>
     </main>
 
@@ -146,12 +144,10 @@ const totalPrice = computed(() => {
     font-weight: bold;
     color: #555;
   }
-
-  td:nth-of-type(1)::before { content: "تصویر"; }
-  td:nth-of-type(2)::before { content: "نام محصول"; }
-  td:nth-of-type(3)::before { content: "قیمت"; }
-  td:nth-of-type(4)::before { content: "موجودی"; }
-  td:nth-of-type(5)::before { content: "تعداد"; }
-  td:nth-of-type(6)::before { content: "حذف"; }
+  table td::before {
+    content: attr(data-label);
+    font-weight: bold;
+    color: #555;
+  }
 }
 </style>

@@ -29,7 +29,7 @@ const showProductDetail = () => {
 </script>
 
 <template>
-  <div class="card bg-base-100 w-100 h-full shadow-sm hover:shadow-md transition-shadow">
+  <div class="card bg-white w-100 h-full shadow-sm hover:shadow-md transition-shadow text-black" >
     <figure class="relative">
       <img 
         class="w-52 h-72 object-cover hover:opacity-90 cursor-pointer transition-opacity"

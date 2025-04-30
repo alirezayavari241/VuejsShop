@@ -53,7 +53,7 @@ const filteredProducts = computed(() => {
       <button @click="selectedFilter = 'all'" class="border rounded-full py-2 px-4 border-black btnbg hover:bg-green-800 transition hover:text-white" :class="selectedFilter === 'all' ? 'bg-green-900 text-white' : ''">
         {{ t("AllProducts.All") }}
       </button>
-      <button @click="selectedFilter = 'cheapest'" class="border rounded-full border-black py-2 px-4 text-black btnbg hover:bg-green-800 hover:text-white transition" :class="selectedFilter === 'cheapest' ? 'bg-green-900 text-white' : ''">
+      <button @click="selectedFilter = 'cheapest'" class="border rounded-full border-black py-2 px-4 btnbg hover:bg-green-800 hover:text-white transition" :class="selectedFilter === 'cheapest' ? 'bg-green-900 text-white' : ''">
       {{ t("AllProducts.Low") }}
       </button>
       <button @click="selectedFilter = 'expensive'" class="border rounded-full py-2 px-4 border-black btnbg hover:bg-green-800 transition hover:text-white" :class="selectedFilter === 'expensive' ? 'bg-green-900 text-white' : ''">

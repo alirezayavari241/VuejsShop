@@ -68,7 +68,7 @@ function handleAddToCart() {
 
       <div class="w-full md:w-1/2 bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-6">
         <div class="text-center">
-          <h1 class="text-2xl md:text-3xl font-bold mb-2">{{ product?.title[locale] }}</h1>
+          <h1 class="text-2xl md:text-3xl font-bold mb-2 text-black">{{ product?.title[locale] }}</h1>
           <p class="text-gray-700 text-sm md:text-base"><strong>{{ t('Productdetail.Author') }}:</strong> {{ product?.author }}</p>
         </div>
 

@@ -1,5 +1,3 @@
-import AllProducts from "../Pages/AllProducts.vue";
-import Productdetail from "../Pages/Productdetail.vue";
 
 const Enlang ={
     messages: {
